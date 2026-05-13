@@ -8,7 +8,7 @@ export default function Contact() {
         Do YOU have a question about our movies? 
       </p>
       <p className="text-lg text-indigo-200 mb-8">
-        We usually respond pretty quicklywithin 24 hours. If this is super urgent matters,
+        We usually respond pretty quickly within 24 hours. If this is super urgent matters,
         please say that. 
       </p>
 
