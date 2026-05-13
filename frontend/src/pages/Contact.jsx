@@ -6,13 +6,13 @@ export default function Contact() {
         Do YOU have a question about our movies? 
       </p>
       <p className="text-lg text-gray-700 mb-8">
-        We usually respond pretty quicklywithin 24 hours. If this is super urgent matters,
+        We usually respond pretty quickly within 24 hours. If this is super urgent matters,
         please say that. 
       </p>
 
       <img
         src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80"
-        alt="Team collaboration"
+        alt="Team collaborating on a project"
         className="w-full rounded-lg shadow-md mb-8 object-cover h-64"
       />
 
