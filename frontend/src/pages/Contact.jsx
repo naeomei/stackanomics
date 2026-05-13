@@ -1,3 +1,5 @@
+import movieCollab from '../assets/moviecollab.jpg'
+
 export default function Contact() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -11,7 +13,7 @@ export default function Contact() {
       </p>
 
       <img
-        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80"
+        src={movieCollab}
         alt="Team collaborating on a project"
         className="w-full rounded-lg shadow-md mb-8 object-cover h-64"
       />
