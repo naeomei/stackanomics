@@ -19,14 +19,11 @@ export default function About() {
     <div className="max-w-4xl mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-4">About the Team</h1>
       <p className="text-lg text-gray-700 mb-4">
-        We're of two building a simple sample application for stackonmics that
-        explores the React, FastAPI, and PostgreSQL stack from end to end. Each
-        of us brings a different background and perspective to the project.
+        We're a movie platform built on React, FastAPI, and PostgreSQL stack from end to end. 
+        
       </p>
       <p className="text-lg text-gray-700 mb-10">
-        Below you can meet the people behind the project below. Click around the site to see
-        what we've built so far, and reach out via the Contact page if you'd
-        like to chat or have any questons.
+        Below see more information on us as individuals and our backgrounds. We hope you enjoy using our platform as much as we enjoyed building it!
       </p>
 
       <div className="grid gap-8 sm:grid-cols-2">
