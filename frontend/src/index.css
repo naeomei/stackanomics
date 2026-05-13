@@ -1,1 +1,133 @@
 @import "tailwindcss";
+
+:root {
+    --bold-color: rgb(45, 157, 255);
+    --secondary-bold-color: rgb(71, 71, 250);
+
+    --bold-text-color: var(--bold-color);
+    --gen-text-color: rgb(255, 219, 209);
+    --light-text-color: rgb(0, 0, 0);
+    --bold-contrast-color: rgb(255, 255, 255);
+
+    --primary-bg-color: rgb(22, 13, 12);
+    --secondary-bg-color: rgb(45, 32, 23);
+    --light-bg-color: rgb(255, 252, 215);
+
+    --gen-spacing: 20px;
+
+    --border-thickness: 5px;
+    --border-color: rgb(81, 68, 38);
+    --border-radius:10px;
+}
+
+
+h1,h2 {
+    font-family:"Lucida Console", "Courier New", monospace;
+    color: var(--bold-text-color);
+    font-size: 35px;
+    font-weight:bolder;
+    margin-bottom: var(--gen-spacing)
+}
+
+h2{
+    font-size: 28px;
+    margin-bottom: 0px;
+    font-weight:normal;
+}
+
+label{
+    font-family:"Lucida Console", "Courier New", monospace;
+    color: var(--secondary-bold-color);
+    font-size: 18px;
+}
+
+p {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--gen-text-color);
+    margin-bottom: var(--gen-spacing);
+    font-size: 15px;
+}
+
+input, textarea {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--light-text-color);
+    border-width: var(--border-thickness);
+    border-color: var(--border-color);
+    background-color: var(--light-bg-color);
+    border-radius: var(--border-radius);
+    display: block;
+    width: 100%;
+    padding:5px;
+    margin-bottom: 20px;
+}
+
+textarea{
+    min-height: 70px;
+}
+
+
+.item{
+    background-color:var(--secondary-bg-color);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.group, .group_center{
+    background-color:var(--secondary-bg-color);
+    border-radius: var(--border-radius);  
+
+    border-width: var(--border-thickness);
+    border-color: var(--border-color);
+    padding: 25px;
+}
+
+.group_center{
+    place-items: center;
+    text-align: center;
+}
+
+button, .nav_select{
+    background-color:var(--bold-color);
+    border-radius: var(--border-radius);  
+    color: var(--bold-contrast-color);
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.main_body {
+  max-width: 56rem;
+  margin-left: auto;   
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.background {
+    background-color: var(--primary-bg-color);
+}
+
+.sec_background {
+    background-color: var(--secondary-bg-color);    
+}
+
+
+.nav_select {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.nav_unselect {
+    color: var(--gen-text-color); 
+}
+
+.nav_unselect:hover {
+    color:  var(--bold-text-color); 
+}

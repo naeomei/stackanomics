@@ -20,41 +20,45 @@ const frameworkImages = [
 
 export default function Home() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div>
       <img 
           src={headPic} 
           alt="homepage picture"
-          className="w-full rounded-lg object-fill h-40 mb-4"
+          className="w-full object-fill h-65 mt-15 -mb-12"
           />
+      
+      <div className="main_body">
 
-      <h1 className="text-4xl font-bold text-white mb-6">
-        Welcome to our Stackanomics
-      </h1>
+        <h1> 
+          Welcome to our Stackanomics
+        </h1>
+
+        <p>
+          We chose to use React, FastAPI, and PostgreSQL for our tech stack. 
+          It's great for quick development and is popular in the industry. 
+          Currently, we only have the React layer set up to get this frontend running; 
+          however, more will be added as the class continues.
+        </p>
+
+        <div class="flex justify-center gap-30 m-10">
+          {frameworkImages.map((item) => (
+            <div class="item">
+              <img 
+              src={item.image} 
+              alt={item.name}
+              class="h-40 w-40 object-fill"/>
+            </div>
+          ))}
 
 
-      <p className="text-lg text-indigo-200 mb-12">
-        We chose to use React, FastAPI, and PostgreSQL for our tech stack. 
-        It's great for quick development and is popular in the industry. 
-        Currently, we only have the React layer set up to get this frontend running; 
-        however, more will be added as the class continues.
-      </p>
+        </div>
 
-      <div class="flex justify-center gap-4 mb-12">
-        {frameworkImages.map((item) => (
-          <img 
-          src={item.image} 
-          alt={item.name}
-          class="h-32 object-cover rounded-lg"/>
-        ))}
-
-
+        <p>
+          We've also decided to go with a movie theme for this website, 
+          which will come into play more as API and CRUD commands are added. 
+          But for now, it's purely for aesthetics.
+        </p>
       </div>
-
-      <p className="text-lg text-indigo-200 mb-12">
-        We've also decided to go with a movie theme for this website, 
-        which will come into play more as API and CRUD commands are added. 
-        But for now, it's purely for aesthetics.
-      </p>
 
 
     </div>
