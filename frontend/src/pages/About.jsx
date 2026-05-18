@@ -34,7 +34,7 @@ export default function About() {
         {team.map((member) => (
           <div
             key={member.name}
-            className="group_center"
+            className="group center"
           >
             <img
               src={member.photo}

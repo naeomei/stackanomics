@@ -72,7 +72,7 @@ textarea{
     border-radius: 20px;
 }
 
-.group, .group_center{
+.group{
     background-color:var(--secondary-bg-color);
     border-radius: var(--border-radius);  
 
@@ -81,7 +81,7 @@ textarea{
     padding: 25px;
 }
 
-.group_center{
+.center{
     place-items: center;
     text-align: center;
 }
@@ -92,7 +92,12 @@ button, .nav_select{
     color: var(--bold-contrast-color);
     font-weight: bold;
     padding: 15px;
-    width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color:var(--secondary-bold-color);
+
 }
 
 nav {

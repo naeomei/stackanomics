@@ -72,7 +72,7 @@ export default function Contact() {
 
         <button
           type="submit"
-          className='mt-5'
+          className='w-full'
         >
           Send Message
         </button>

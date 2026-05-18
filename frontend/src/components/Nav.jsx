@@ -16,6 +16,7 @@ export default function Nav() {
           <NavLink to="/" className={linkClass} end>Home</NavLink>
           <NavLink to="/about" className={linkClass}>About</NavLink>
           <NavLink to="/contact" className={linkClass}>Contact</NavLink>
+          <NavLink to="movieapi" className={linkClass}>PublicApi</NavLink>
         </div>
       </div>
     </nav>
