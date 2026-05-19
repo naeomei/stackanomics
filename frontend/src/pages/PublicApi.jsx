@@ -1,79 +1,20 @@
 import { useNavigate } from 'react-router-dom'
-import placeholder from '../assets/totoro.jpg'
-
-const movieList = [
-    {
-        title: 'Movie Title',
-        id: 0,
-        rating: 4,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },
-    {
-        title: 'Movie Title',
-        id: 1,
-        rating: 1,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },
-    {
-        title: 'Movie Title',
-        id: 2,
-        rating: 4,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },
-    {
-        title: 'Movie Title',
-        id: 3,
-        rating: 2,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },  
-    {
-        title: 'Movie Title',
-        id: 4,
-        rating: 5,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },
-    {
-        title: 'Movie Title',
-        id: 5,
-        rating: 5,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },  
-    {
-        title: 'Movie Title',
-        id: 6,
-        rating: 5,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    }, 
-    {
-        title: 'Movie Title',
-        id: 7,
-        rating: 5,
-        photo: placeholder,
-        desc: 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
-        genre: ['Horror', 'Commedy']
-    },   
-]
-
-  function handleClick() {
-    alert('You clicked me!');
-  }
+import { useState, useEffect } from 'react'
 
 export default function PublicApi() {
     const navigate = useNavigate();
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchMovies() {
+            const res = await fetch('https://ghibliapi.vercel.app/films');
+            const data = await res.json();
+            setMovies(data);
+            setLoading(false);
+        }
+        fetchMovies();
+    }, []);
 
   return (
     <div className="main_body">
@@ -99,39 +40,40 @@ export default function PublicApi() {
         </div>
       </form>
 
-      <div className="grid gap-4">
-        {movieList.map((movie) => (
-          <div
-            key={movie.id}
-            className="group hover:cursor-pointer" 
-            onClick={() => navigate(`/movie/${movie.id}`)}
-          >
-            <div className='flex gap-4'>
-                <img
-                src={movie.photo}
-                alt={movie.title}
-                className="h-40 object-cover mb-4 border-4 border-white"
-                />
-                <div>
-                    <div className="flex justify-between items-center">
-                    <h2>{movie.title}({movie.id})</h2>
-                    <label>{movie.rating}/5</label>
-                    </div>
+      {loading ? (
+        <p>Loading movies...</p>
+      ) : (
+        <div className="grid gap-4">
+          {movies.map((movie) => (
+            <div
+              key={movie.id}
+              className="group hover:cursor-pointer"
+              onClick={() => navigate(`/movie/${movie.id}`)}
+            >
+              <div className='flex gap-4'>
+                  <img
+                  src={movie.image}
+                  alt={movie.title}
+                  className="h-40 object-cover mb-4 border-4 border-white"
+                  />
+                  <div>
+                      <div className="flex justify-between items-center">
+                      <h2>{movie.title}</h2>
+                      <label>{Math.round(movie.rt_score / 20)}/5</label>
+                      </div>
 
-                    {movie.genre.map((genre) => (
-                        <label>{genre} </label>
-                    ))}
-                    <p className='mt-5 line-clamp-3'>{movie.desc}</p>  
-                    {/* <button onClick={() => navigate(`/movie/${movie.id}`)}>test</button>  */}
-                </div>
+                      <label>Dir. {movie.director}</label>
+                      <p className='mt-5 line-clamp-3'>{movie.description}</p>
+                  </div>
+              </div>
             </div>
+          ))}
+          <div className="flex justify-between items-center">
+              <button>Prev</button>
+              <button>Next</button>
           </div>
-        ))}
-        <div className="flex justify-between items-center">
-            <button>Prev</button>
-            <button>Next</button>
         </div>
-      </div>
+      )}
     </div>
   )
 }
