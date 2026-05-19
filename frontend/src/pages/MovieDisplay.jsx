@@ -14,7 +14,6 @@ export default function SelectMovie() {
   return (
     <div>
       <div className="main_body">
-        <p>Viewing Movie ID: {movieId}</p>
 
         <div className='flex gap-4'>
             <img
