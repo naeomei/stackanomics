@@ -41,11 +41,16 @@ label{
     font-size: 18px;
 }
 
-p {
+p, li {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     color: var(--gen-text-color);
     margin-bottom: var(--gen-spacing);
     font-size: 15px;
+}
+
+li{
+    margin-bottom: 5px;
+    margin-left: 30px
 }
 
 input, textarea {

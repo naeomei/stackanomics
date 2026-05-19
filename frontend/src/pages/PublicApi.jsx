@@ -22,7 +22,7 @@ export default function PublicApi() {
       <p>
         We have a wide array of movies availible in this public api, have a look around!
       </p>
-      <form onSubmit={(e) => e.preventDefault()}
+      {/* <form onSubmit={(e) => e.preventDefault()}
       >
         <div className='flex'>
           <input
@@ -38,7 +38,7 @@ export default function PublicApi() {
           Search
         </button>
         </div>
-      </form>
+      </form> */}
 
       {loading ? (
         <p>Loading movies...</p>
@@ -59,19 +59,19 @@ export default function PublicApi() {
                   <div>
                       <div className="flex justify-between items-center">
                       <h2>{movie.title}</h2>
-                      <label>{Math.round(movie.rt_score / 20)}/5</label>
+                      <label>{movie.rt_score / 10}/10</label>
                       </div>
 
-                      <label>Dir. {movie.director}</label>
+                      <label>{movie.director}</label>
                       <p className='mt-5 line-clamp-3'>{movie.description}</p>
                   </div>
               </div>
             </div>
           ))}
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
               <button>Prev</button>
               <button>Next</button>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
