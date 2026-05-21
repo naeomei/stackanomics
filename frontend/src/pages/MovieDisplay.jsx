@@ -2,13 +2,16 @@ import { useParams } from 'react-router-dom';
 import placeholder from '../assets/totoro.jpg'
 import { useState, useEffect } from 'react'
 import { getMovieById } from '../api/movieApi'
-import { getReviewByMovie } from '../api/reviewApi'
+import { getReviewByMovie, createReview } from '../api/reviewApi'
+
+
 
 export default function SelectMovie() {
     const { movieId } = useParams(); 
     
     const [movie, setMovies] = useState(null);
     const [reviews, setReviews] = useState(null);
+    
 
     const [loading, setLoading] = useState(true);
 
@@ -43,7 +46,7 @@ export default function SelectMovie() {
                     className="w-60 object-cover mb-4"
                     />
                     <div>
-                        <h2>{movie.title}</h2>
+                        <h2>{movie.title}({movie.id})</h2>
                         <label>({movie.original_title_romanised})</label>
                             <ul className="columns-2">
                                 <li>Rating: {movie.rt_score / 10}/10</li>
@@ -66,31 +69,41 @@ export default function SelectMovie() {
                             <p>- {review.reviewer} ({review.id})</p>
                         </div>
                     ))}
-                    <form className='group'>
+                    <form className='group' action={createReview}>
+                        <input type="hidden" name="film_id" value={movie.id}></input>
                         <input
                             type="text"
+                            maxlength="200" 
+                            minlength="1"
                             id="title"
                             name="title"
                             placeholder="Title"
+                            required
                         />
                         <input
                             type="number"
-                            min="1" max="10"
+                            min="1" max="5"
                             id="rating"
                             name="rating"
                             placeholder="rating / 5"
+                            required
                         />
                         <textarea
                             type="text"
                             id="body"
+                            minlength="1"
                             name="body"
                             placeholder="body"
+                            required
                         />
                         <input
                             type="text"
-                            id="name"
-                            name="name"
-                            placeholder="name"
+                            id="reviewer"
+                            maxlength="100" 
+                            minlength="1"
+                            name="reviewer"
+                            placeholder="reviewer"
+                            required
                         />
                         <button type="submit">Create</button>
                     </form>
