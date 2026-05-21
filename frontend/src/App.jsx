@@ -5,6 +5,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import PublicApi from './pages/PublicApi'
 import SelectMovie from './pages/MovieDisplay'
+import ReviewUpdate from './pages/ReviewUpdate'
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/movieapi" element={<PublicApi />} />
             <Route path="/movie/:movieId" element={<SelectMovie />} />
+            <Route path="/review/:reviewId" element={<ReviewUpdate />} />
+
           </Routes>
         </main>
       </div>

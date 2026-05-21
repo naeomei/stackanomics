@@ -42,11 +42,16 @@ export async function getReviewByMovie(movieId) {
     const res = await fetch(`${baseURL}/movie/${movieId}`);
     const data = await res.json();
     return data
+}   
+
+export async function getReviewById(reviewId) { 
+    const res = await fetch(`${baseURL}/${reviewId}`);
+    const data = await res.json();
+    return data
 }
 
 export async function createReview(formData) { 
     const rawData = Object.fromEntries(formData.entries());
-    
     const data = {
         ...rawData,
         rating: parseInt(rawData.rating)
@@ -61,10 +66,26 @@ export async function createReview(formData) {
     });
 }
 
-export async function updateReview(reviewId) { 
+export async function updateReview(reviewId, formData) {    
+    const rawData = Object.fromEntries(formData.entries());
+    
+    const data = {
+        ...rawData,
+        rating: parseInt(rawData.rating)
+    };
+
+    const res = await fetch(`${baseURL}/${reviewId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 
 }
 
 export async function deleteReview(reviewId) { 
-
+    const res = await fetch(`${baseURL}/${reviewId}`, {
+        method: 'Delete'
+    });
 }

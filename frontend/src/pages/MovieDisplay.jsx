@@ -1,26 +1,41 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import placeholder from '../assets/totoro.jpg'
 import { useState, useEffect } from 'react'
 import { getMovieById } from '../api/movieApi'
-import { getReviewByMovie, createReview } from '../api/reviewApi'
-
-
+import moment from 'moment';
+import { getReviewByMovie, createReview, deleteReview } from '../api/reviewApi'
 
 export default function SelectMovie() {
+    const navigate = useNavigate();
+
     const { movieId } = useParams(); 
     
-    const [movie, setMovies] = useState(null);
+    const [movie, setMovie] = useState(null);
     const [reviews, setReviews] = useState(null);
+    
+    async function loadReviews() {
+        const reviews = await getReviewByMovie(movieId);
+        setReviews(reviews);
+    }
+
+    async function handleSubmit(formData) {
+        await createReview(formData);
+        await loadReviews();
+    }
+
+    async function handleDelete(reviewId) {
+        await deleteReview(reviewId)
+        await loadReviews();
+    }
     
 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
-            const movies = await getMovieById(movieId) 
-            const reviews = await getReviewByMovie(movieId) 
-            setReviews(reviews)
-            setMovies(movies);
+            const movie = await getMovieById(movieId) 
+            await loadReviews();
+            setMovie(movie);
             setLoading(false);
         }
         fetchData();
@@ -46,7 +61,7 @@ export default function SelectMovie() {
                     className="w-60 object-cover mb-4"
                     />
                     <div>
-                        <h2>{movie.title}({movie.id})</h2>
+                        <h2>{movie.title}</h2>
                         <label>({movie.original_title_romanised})</label>
                             <ul className="columns-2">
                                 <li>Rating: {movie.rt_score / 10}/10</li>
@@ -64,17 +79,30 @@ export default function SelectMovie() {
                                 <h2>{review.title}</h2>
                                 <label>{review.rating}/5</label>
                             </div>
-                            <label>creation date?:{review.created_at}</label>
+                            <label>{moment(review.created_at).format('DD MMM, YYYY')}</label>
                             <p className='mt-5 line-clamp-3'>{review.body}</p>
-                            <p>- {review.reviewer} ({review.id})</p>
+                            <div className="flex justify-between items-center">
+                                <p>- {review.reviewer} ({review.id})</p>
+                                <div>
+                                    <button
+                                        className='mr-5'
+                                        onClick={()=>navigate(`/review/${review.id}`)}>
+                                        update
+                                    </button>
+                                    <button
+                                        onClick={()=>handleDelete(review.id)}>
+                                        delete
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     ))}
-                    <form className='group' action={createReview}>
+                    <form className='group' action={handleSubmit}>
                         <input type="hidden" name="film_id" value={movie.id}></input>
                         <input
                             type="text"
-                            maxlength="200" 
-                            minlength="1"
+                            maxLength="200" 
+                            minLength="1"
                             id="title"
                             name="title"
                             placeholder="Title"
@@ -91,7 +119,7 @@ export default function SelectMovie() {
                         <textarea
                             type="text"
                             id="body"
-                            minlength="1"
+                            minLength="1"
                             name="body"
                             placeholder="body"
                             required
@@ -99,19 +127,14 @@ export default function SelectMovie() {
                         <input
                             type="text"
                             id="reviewer"
-                            maxlength="100" 
-                            minlength="1"
+                            maxLength="100" 
+                            minLength="1"
                             name="reviewer"
                             placeholder="reviewer"
                             required
                         />
                         <button type="submit">Create</button>
                     </form>
-                    <div className="flex justify-between items-center">
-                        <button>Prev</button>
-                        <button>Next</button>
-                    </div>
-
                 </div>
 
             </div>

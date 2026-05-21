@@ -86,6 +86,8 @@ textarea{
     padding: 25px;
 }
 
+
+
 .center{
     place-items: center;
     text-align: center;
@@ -102,7 +104,6 @@ button, .nav_select{
 button:hover {
     cursor: pointer;
     background-color:var(--secondary-bold-color);
-
 }
 
 nav {
