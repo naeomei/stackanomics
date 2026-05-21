@@ -56,15 +56,49 @@ export default function SelectMovie() {
                 </div>
                 <div>
                     {reviews.map((review) => (
-                        <div className='group'>
-                                <div className="flex justify-between items-center">
-                                <h2>{review.reviewer}</h2>
-                                <label>{review.rating}</label>
-                                </div>
-                                <label>creation date?:{review.created_at}</label>
-                                <p className='mt-5 line-clamp-3'>{movie.description}</p>
+                        <div className='group '>
+                            <div className="flex justify-between items-center">
+                                <h2>{review.title}</h2>
+                                <label>{review.rating}/5</label>
+                            </div>
+                            <label>creation date?:{review.created_at}</label>
+                            <p className='mt-5 line-clamp-3'>{review.body}</p>
+                            <p>- {review.reviewer} ({review.id})</p>
                         </div>
                     ))}
+                    <form className='group'>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Title"
+                        />
+                        <input
+                            type="number"
+                            min="1" max="10"
+                            id="rating"
+                            name="rating"
+                            placeholder="rating / 5"
+                        />
+                        <textarea
+                            type="text"
+                            id="body"
+                            name="body"
+                            placeholder="body"
+                        />
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="name"
+                        />
+                        <button type="submit">Create</button>
+                    </form>
+                    <div className="flex justify-between items-center">
+                        <button>Prev</button>
+                        <button>Next</button>
+                    </div>
+
                 </div>
 
             </div>
